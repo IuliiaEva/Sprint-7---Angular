@@ -1,0 +1,18 @@
+<span
+  type="button"
+  (click)="modal.open(infoModal)"
+  class="fa-solid fa-circle-info">
+</span>
+
+<ng-template #infoModal let-modal>
+  <div class="modal-header bg-danger text-white">
+    <h4 class="modal-title">INFORMACIÓN</h4>
+  </div>
+  <div class="modal-body text-dark">
+Selecciona el número de páginas e idiomas que quieras en tu web.
+El precio será el número de páginas por los idiomas por 30.
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-primary" (click)="modal.close()">Entendido</button>
+  </div>
+</ng-template>

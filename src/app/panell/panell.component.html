@@ -1,0 +1,13 @@
+<form [formGroup]="panellForm" autocomplete="off">
+        <!-- {{panellForm.value | json}} -->
+        <div class="container border rounded-3 border-3 border-dark p-3 m-2">
+                <app-modal></app-modal>
+                <p>Número de páginas <button (click)="updateValue(-1, 'paginas')">-</button>
+                        <input type="number" formControlName="paginas" (change)="webPrice()" [placeholder]="countPage">
+                        <button (click)="updateValue(1, 'paginas')">+</button></p>
+                <p>Número de idiomas <button (click)="updateValue(-1, 'idiomas')">-</button>
+                        <input type="number" formControlName="idiomas" (click)="updateValue(1, 'idiomas')" [placeholder]="countLang">
+                        <button (click)="updateValue(1, 'idiomas')">+</button></p>
+                <p>Precio: {{webPrice()}}</p>
+        </div>
+</form>

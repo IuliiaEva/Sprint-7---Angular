@@ -1,0 +1,66 @@
+<form [formGroup]="myForm" (ngSubmit)="onSave()" autocomplete="off"><br>
+    <h4>Qué queres hacer?</h4>
+    <p>Presupuesto:<br>
+      <input type="text" formControlName="nombrePresu" placeholder="Nombre del Presupuesto" class="form-control" style="width: 300px;"></p>
+    <p>Cliente:<br>
+      <input type="text" formControlName="nombreCliente" placeholder="Nombre del Cliente" class="form-control" style="width: 300px;"></p>
+      <input type="checkbox" formControlName="web">Página web
+    (500€)<br>
+    <div *ngIf="f['web'].value === true">
+        <app-panell [countNum1]="num1" (num1)="precioPag($event)" [countNum2]="num2" (num2)="precioLang($event)"
+            [countPLS]="pagLangSuma" (pagLangSuma)="precioWeb($event)"></app-panell>
+    </div>
+    <input type="checkbox" formControlName="seo">Campaña SEO (300€)<br>
+    <input type="checkbox" formControlName="ad">Campaña de publicidad
+    (200€)<br>
+    <p class="p-2" type="number">- Precio total: {{calcularPrecio()}}</p>
+    <button class="btn btn-primary mx-1" type="submit" style="width: 300px;">Guardar Presupuesto</button><br><br>
+    <button class="btn btn-primary " type="button" style="width: 300px;" (click)="verPresus()">Ver Presupuestos</button>
+</form>
+
+<!-- {{myForm.value | json}} -->
+
+<div *ngIf="presuMostrado"><br>
+  <div class="container-fluid">
+    <div class="row pb-3">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Presupuesto</th>
+            <th>Cliente</th>
+            <th>Web (500€)</th>
+            <th>Páginas</th>
+            <th>Idiomas</th>
+            <th>Extras Web</th>
+            <th>SEO (300€)</th>
+            <th>AD (200€)</th>
+            <th>Precio Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let p of presu">
+            <td>{{ p.nombrePresu }}</td>
+            <td>{{ p.nombreCliente }}</td>
+            <td>
+              <ng-container *ngIf="p.web; else noCheck">✓</ng-container>
+              <ng-template #noCheck>-</ng-template>
+            </td>
+            <td>{{ p.pags }}</td>
+            <td>{{ p.langs }}</td>
+            <td>{{ p.precioWeb }}</td>
+            <td>
+              <ng-container *ngIf="p.seo; else noCheck">✓</ng-container>
+              <ng-template #noCheck>-</ng-template>
+            </td>
+            <td>
+              <ng-container *ngIf="p.ad; else noCheck">✓</ng-container>
+              <ng-template #noCheck>-</ng-template>
+            </td>
+            <td>{{ p.precioTotal }}</td>
+          </tr>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

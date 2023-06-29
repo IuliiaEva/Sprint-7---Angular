@@ -1,0 +1,16 @@
+<div class="container-fluid d-flex align-items-center p-5" style="overflow-x: hidden">
+    <div class="row">
+    <div class="col" *ngIf="welcome, else next">
+        <h4 class="fs-1">En esta pagina realizo una aplicación con el fin de facilitar los cálculos del presupuesto de una página web</h4>
+        <br>
+        <h5 class="fs-2">Dale a comenzar y crea tu presupuesto seleccionando los productos que necesitas</h5>
+        <br>
+            <button class="btn btn-primary" (click)="start()">Comenzar</button>
+    </div>
+  </div>
+</div>
+
+    <ng-template #next>
+        <button class="col-3 btn btn-danger mx-3"  style="width: 300px;" (click)="back()">Volver</button>
+        <app-home></app-home>
+    </ng-template>
